@@ -1,0 +1,125 @@
+<html> 
+    <head> 
+		<title>Mediator</title>
+			
+		<link rel="stylesheet" href="css/codemirror.css">
+		<link rel="stylesheet" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.1/css/jquery.dataTables.css">
+		<!--<link rel="stylesheet"
+		      href="css/smoothness/jquery-ui-1.8.20.custom.css">-->
+		<link rel="stylesheet" 
+		      href="lib/themes/lightcolor/gray/jtable.css">
+
+		<style media="screen">
+		            body {
+		                margin: 40px;
+						background-color: transparent;
+						overflow: hidden;
+		            }
+		            .component {
+						position: absolute;
+					}
+					#main {
+						position: absolute;
+						left: 0px;
+						top: 0px;
+						width: 100%;
+						height: 100%;
+						overflow: hidden;
+					}
+					#content {
+						position: absolute;
+						left: 980px;
+		                top: 420px;
+						width: 400px;
+		                height: 400px;
+					}
+		</style>
+		
+		<script src="lib/jquery.min.js"></script>
+
+        <script src="lib/webfs.js"></script>
+		
+		<script src="lib/jlayout.flow.min.js"></script>
+		<script src="lib/jquery.sizes.min.js"></script>
+		<script src="lib/jquery.ui.min.js"></script>
+		<script src="lib/jquery.jlayout.min.js"></script>
+		<script src="lib/raphael-min.js"></script>
+		<script src="lib/codemirror.js"></script>
+		<script src="lib/mode/stex/stex.js"></script>
+		<script src="lib/jquery.jstree.js"></script>
+		<script src="lib/jquery.jtable.min.js"></script>
+		<script src="lib/pdf.js"></script>
+		
+		<script language="javascript">
+		document.write("<script src=\"" + webfs.url + "/channel/bcsocket.js\"><\/script>");
+		</script>
+		<script language="javascript">
+		document.write("<script src=\"" + webfs.url + "/share/share.js\"><\/script>");
+		</script>
+		<script language="javascript">
+		document.write("<script src=\"" + webfs.url + "/share/json.js\"><\/script>");
+		</script>
+		<!--<script language="javascript">
+		document.write("<script src=\"" + webfs.url + "/share/text.js\"><\/script>");
+		</script>-->
+		<script language="javascript">
+		document.write("<script src=\"" + webfs.url + "/share/cm.js\"><\/script>");
+		</script>
+	
+		<script src="lib/utils.js"></script>
+		<script src="lib/components.js"></script>
+		<script src="lib/client.js"></script>
+    </head>
+	<body>
+	    <div id="login">
+	        <form id="form">
+            			<input id="username" type="text" name="username" placeholder="username..." />
+            			<input id="password" type="password" name="password" placeholder="password..." />
+            			<br>
+            			<input id="input" type="submit" name="submit" value="login" />
+            		</form>
+	    </div>
+	    
+		<div id="main">
+		    <script>
+			$(document).ready(function() {
+			$('#ProjectsTableContainer').jtable({
+			title: 'Projects',
+			actions: {
+			  listAction: '/api/ListProjects',
+			  createAction: '/api/CreateProject',
+			  updateAction: '/api/UpdateProject',
+			  deleteAction: '/api/DeleteProject'
+			},
+			fields: {
+  			id: {
+  			  key: true,
+  			  create: false,
+  			  edit: false,
+  			  list: false
+  			},
+  			name: {
+  			  title: 'Project name',
+  			},
+  			owner: {
+  			  title: 'Owner',
+  			},
+  			created: {
+  			  title: 'Created',
+  			  type: 'date',
+			  edit: false
+  			},
+  			modified: {
+  			  title: 'Modified',
+  			  type: 'date',
+			  edit: false
+  			}
+			},
+			messages: {
+			  addNewRecord: "+ Add New Project"
+			}} );
+			$('#ProjectsTableContainer').jtable('load');
+  			} );
+     		    </script>
+	</body> 
+</html>

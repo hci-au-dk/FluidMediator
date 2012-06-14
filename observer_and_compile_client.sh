@@ -1,0 +1,1 @@
+coffee -o ./html/lib -cw ./client_src/*.coffee
