@@ -1,0 +1,12 @@
+{
+  "name": "FluidMediator",
+  "version": "0.0.1",
+  "description": "The Mediator for the Fluid project",
+  "keywords": ["hci", "multisurface"],
+  "homepage": "",
+  "author": "Clemens N. Klokmose <clemens@cs.au.dk>",
+  "dependencies": {
+    "express": "*",
+    "node-uuid": "*"
+  }
+}
