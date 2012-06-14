@@ -14,8 +14,8 @@ loadPage = () ->
     
     testEditor = $('<div class="component"/>')
     $('#main').append testEditor
-    editor = new Editor testEditor, '/mypaper'
-
+    editor = new Editor testEditor, '/mypaper2'
+    
     #testPreviewer = $('<div class="component"/>')
     #$('#main').append testPreviewer
     #editor = new Previewer testPreviewer, 'bar'

@@ -146,6 +146,7 @@ class root.Editor extends Component
         @div.attr 'id', @root_dir
         super @div
 
+        @currentDoc = null
         webfs.ls root.username, @root_dir, (data) =>
             @loadProjectFolder(data)
         
@@ -157,6 +158,8 @@ class root.Editor extends Component
         project_data = []
         for file in data
             filename = file.path[@root_dir.length+1..] #ToDo provide filename in json
+            if filename[0] == '.'
+                continue
             file_data = {
                 "data": filename,
                 "metadata": { id: filename, path: file.path}
@@ -194,18 +197,21 @@ class root.Editor extends Component
         @content.append editorDiv
 
         #convert the editorDiv into a CodeMirror thing
-        @editor = CodeMirror editorDiv.get(0), {"mode": "stex"}
-
+        @editor = CodeMirror editorDiv.get(0), {"mode": "stex", "lineWrapping": true}
+        
         #Give it some tex
         #editor.setValue tex
 
         menu.bind "select_node.jstree", (event, data) =>
+                if @currentDoc != null
+                    @currentDoc.detach_cm()
                 filename = data.rslt.obj.data("id")
                 path = data.rslt.obj.data("path")
                 webfs.loadBuffer root.username, path, (error, doc) =>
                     if error?
                         console.log error
                     else
+                        @currentDoc = doc
                         doc.attach_cm(@editor, false)
 
 #PROJECT_LIST
