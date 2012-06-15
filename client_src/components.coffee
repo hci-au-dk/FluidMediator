@@ -168,11 +168,18 @@ class root.Editor extends Component
         
         menu.jstree {
             "core" : { },
+            "themes" : {
+                "theme" : "default",
+                "dots" : true,
+                "icons" : false
+            },
             "json_data": {
                 "data": project_data,
             }
             "plugins" : [ "themes", "json_data", "ui"]
             }
+        
+        #menu.jstree "set_theme", "default-rtl"
 
 
         @content.append menu
