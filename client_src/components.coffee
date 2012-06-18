@@ -200,8 +200,15 @@ class root.Editor extends Component
         editorDiv.css 'left', 154
         editorDiv.css 'top', 0
         editorDiv.attr 'id', @id+'_editor'
+        
+        loadingIcon = $('<img src="img/ajax-loader.gif"/>')
+        loadingIcon.css('position': 'absolute')
+        loadingIcon.css('top': '50%')
+        loadingIcon.css('left': '50%')
 
         @content.append editorDiv
+        @content.append loadingIcon
+        loadingIcon.hide()
 
         #convert the editorDiv into a CodeMirror thing
         @editor = CodeMirror editorDiv.get(0), {"mode": "stex", "lineWrapping": true}
@@ -214,12 +221,14 @@ class root.Editor extends Component
                     @currentDoc.detach_cm()
                 filename = data.rslt.obj.data("id")
                 path = data.rslt.obj.data("path")
+                loadingIcon.show()
                 webfs.loadBuffer root.username, path, (error, doc) =>
                     if error?
                         console.log error
                     else
                         @currentDoc = doc
                         doc.attach_cm(@editor, false)
+                        loadingIcon.hide()
 
 #PROJECT_LIST
 class root.ProjectList extends Component
