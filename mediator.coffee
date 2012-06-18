@@ -43,7 +43,7 @@ class Mediator
         @app.use(express.static(__dirname+'/html'))
 
         @app.get '/webfs', (req, res) ->
-            res.send({hostname: '10.11.108.249', port: 8001})
+            res.send({hostname: 'localhost', port: 8001})
         
         @app.get('/user/:id', (req, res) -> res.send('user ' + req.params.id))
         
