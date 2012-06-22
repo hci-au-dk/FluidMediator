@@ -181,18 +181,28 @@ class root.Editor extends Component
         
         #menu.jstree "set_theme", "default-rtl"
 
+        compileButton = $('<button type="button">Compile</button>')
+        compileButton.on 'click', (event) =>
+            surrogate.compileLatex(@root_dir, root.username)
 
         @content.append menu
+        @content.append compileButton
 
         menu.css 'position', 'absolute'
         menu.css 'width', 150
-        menu.css 'height', @content.pixels('height')
+        menu.css 'height', @content.pixels('height') - 80
         menu.css 'left', 0
         menu.css 'top', 0
         menu.css 'margin-bottom', 8
         menu.css 'border', 'solid 1px'
         menu.css 'margin', '0 auto'
 
+        compileButton.css 'position', 'absolute'
+        compileButton.css 'width', 150
+        compileButton.css 'height', 50
+        compileButton.css 'left', 0
+        compileButton.css 'top', @content.pixels('height') - 70
+        
         editorDiv = $('<div/>')
         editorDiv.css 'position', 'absolute'
         editorDiv.css 'width', @content.pixels('width')-146
